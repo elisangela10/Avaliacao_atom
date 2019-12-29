@@ -1,0 +1,68 @@
+<!--
+/**
+ * ==============================================================================================================
+ *
+ * View de grade: gera a grade para aplicativo exemplo
+ *
+ * ----------------------------------------------------
+ *
+ * @author Alexandre Bezerra Barbosa <alxbbarbosa@yahoo.com.br>
+ * @copyright (c) 2018, Alexandre Bezerra Barbosa
+ * @version 1.00
+ * ==============================================================================================================
+ */ -->
+ <!DOCTYPE html>
+<html lang='pt-br'>
+    <header>
+        <meta charset="utf-8">
+        <title>Contatos</title>
+        <link href='https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css' rel='stylesheet' integrity='sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB' crossorigin='anonymous' />
+        <link href='https://use.fontawesome.com/releases/v5.1.0/css/all.css' rel='stylesheet' integrity='sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt' crossorigin='anonymous' />
+        <script src='https://code.jquery.com/jquery-3.3.1.slim.min.js' integrity='sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo' crossorigin='anonymous'></script>
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js' integrity='sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49' crossorigin='anonymous'></script>
+        <script src='https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js' integrity='sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T' crossorigin='anonymous'></script>
+
+    </header>
+    <body>
+<h1>Contatos</h1>
+<hr>
+<div class="container">
+    <table class="table table-bordered table-striped" style="top:40px;">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Telefone</th>
+                <th>Email</th>
+                <th><a href="<?= route('contatos.create') ?>" class="btn btn-success btn-sm">Novo</a></th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            if ($contatos) {
+                foreach ($contatos as $contato) {
+                    ?>
+                    <tr>
+                        <td><?php echo $contato->nome; ?></td>
+                        <td><?php echo $contato->telefone; ?></td>
+                        <td><?php echo $contato->email; ?></td>
+                        <td>
+                            <a href="<?= route('contatos.edit', $contato->id) ?>" class="btn btn-primary btn-sm">Editar</a>
+                            <a href="<?= route('contatos.destroy', $contato->id) ?>" class="btn btn-danger btn-sm">Excluir</a>
+                        </td>
+                    </tr>
+                    <?php
+                }
+            } else {
+                ?>
+                <tr>
+                    <td colspan="5">Nenhum registro encontrado</td>
+                </tr>
+                <?php
+            }
+            ?>
+        </tbody>
+    </table>
+</div>
+</body>
+
+</html>
